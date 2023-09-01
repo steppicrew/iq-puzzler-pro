@@ -1,0 +1,2 @@
+[MESSAGES CONTROL]
+disable=redefined-outer-name,pointless-string-statement,cell-var-from-loop
