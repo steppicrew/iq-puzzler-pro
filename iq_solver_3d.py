@@ -151,9 +151,9 @@ for color, stone in STONES.items():
     directions: list[Direction] = []
     for direction in all_directions:
         shape = rotate_stone(stone=stone, direction=direction)
-        min_x=min(p[0] for p in shape)
-        min_y=min(p[1] for p in shape)
-        min_z=min(p[2] for p in shape)
+        min_x = min(p[0] for p in shape)
+        min_y = min(p[1] for p in shape)
+        min_z = min(p[2] for p in shape)
         normalized_shape = tuple(sorted(
             apply_stone(
                 stone=shape,
@@ -256,10 +256,10 @@ def place_next_stone(colors: list[StoneColor]):
                 for direction in STONE_DIRECTIONS[color]:
                     if place_stone(color, direction, (x, y, z)):
                         if len(colors) == 0:
-                            # print_board(True, False)
-                            # return
-                            print_board(True, True)
-                            exit()
+                            print_board(True, False)
+                            return
+                            # print_board(True, True)
+                            # exit()
                         if test_board():
                             print_board()
                             place_next_stone(colors)
