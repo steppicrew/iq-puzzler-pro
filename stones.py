@@ -73,18 +73,18 @@ _LIGHT = "🟓"
 _DARK = "🟔"
 
 STONE_MARKER: dict[StoneColor, str] = {
-    "green": colored(_DARK, 'green'),
-    "pink": colored(_LIGHT, "light_magenta"),
-    "yellow": colored(_DARK, "yellow"),
-    "violet": colored(_DARK, "magenta"),
-    "lightred": colored(_LIGHT, "light_red"),
-    "red": colored(_DARK, "red"),
-    "orange": colored(_LIGHT, "light_yellow"),
-    "blue": colored(_DARK, "blue"),
-    "lightblue": colored(_LIGHT, "light_blue"),
-    "cyan": colored(_DARK, "cyan"),
-    "lightgreen": colored(_LIGHT, "light_green"),
-    "lime": colored(_LIGHT, "light_cyan"),
+    "green": colored(_DARK, 'green', force_color=True),
+    "pink": colored(_LIGHT, "light_magenta", force_color=True),
+    "yellow": colored(_DARK, "yellow", force_color=True),
+    "violet": colored(_DARK, "magenta", force_color=True),
+    "lightred": colored(_LIGHT, "light_red", force_color=True),
+    "red": colored(_DARK, "red", force_color=True),
+    "orange": colored(_LIGHT, "light_yellow", force_color=True),
+    "blue": colored(_DARK, "blue", force_color=True),
+    "lightblue": colored(_LIGHT, "light_blue", force_color=True),
+    "cyan": colored(_DARK, "cyan", force_color=True),
+    "lightgreen": colored(_LIGHT, "light_green", force_color=True),
+    "lime": colored(_LIGHT, "light_cyan", force_color=True),
 }
 
 

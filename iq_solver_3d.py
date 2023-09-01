@@ -256,7 +256,7 @@ def place_next_stone(colors: list[StoneColor]):
                 for direction in STONE_DIRECTIONS[color]:
                     if place_stone(color, direction, (x, y, z)):
                         if len(colors) == 0:
-                            print_board(True, False)
+                            print_board(True)
                             return
                             # print_board(True, True)
                             # exit()
@@ -294,9 +294,14 @@ else:
         c for c in STONES if c not in used_stones
     ]
     place_next_stone(remaining_colors)
+
     for b in found_boards:
         print(b)
         print()
+
+    out_file = f"{__file__}.{GAME}.solution.txt"
+    with open(out_file, mode="w") as file:
+        file.write("\n".join(f"{b}\n" for b in found_boards))
 
 
 # print(''.join(str(i) for i in range(1)))

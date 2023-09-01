@@ -58,8 +58,8 @@ for color, stone in STONES.items():
     directions: list[Direction] = []
     for direction in all_directions:
         shape = rotate_stone(stone=stone, direction=direction)
-        min_x=min(p[0] for p in shape)
-        min_y=min(p[1] for p in shape)
+        min_x = min(p[0] for p in shape)
+        min_y = min(p[1] for p in shape)
         normalized_shape = tuple(sorted(
             apply_stone(
                 stone=shape,
@@ -188,6 +188,10 @@ else:
     for b in found_boards:
         print(b)
         print()
+
+    out_file = f"{__file__}.{GAME}.solution.txt"
+    with open(out_file, mode="w") as file:
+        file.write("\n".join(f"{b}\n" for b in found_boards))
 
 
 # print(''.join(str(i) for i in range(1)))
