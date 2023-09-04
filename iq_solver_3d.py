@@ -25,10 +25,11 @@ class IqSolver3d(IqSolverBase):
         )
 
 
-solver = IqSolver3d()
-
-GAME: int = 1
+GAME: int = 0
 TEST = False
+
+solver = IqSolver3d(file_name_color=f"{__file__}.{GAME}.solution-color.txt",
+                    file_name_text=f"{__file__}.{GAME}.solution.txt")
 
 if GAME == 1:  # pyright: ignore[reportUnnecessaryComparison]
     solver.place_stone("green", (0, 1, -1), (0, 0, 0))
@@ -51,8 +52,9 @@ elif GAME == 32:  # pyright: ignore[reportUnnecessaryComparison]
 
 
 if TEST:
-    solver.print_board(False)
+    solver.print_board(no_dups=False)
 else:
+    solver.load_board()
     solver.solve()
     solver.print_solutions()
-    solver.save_solutions(f"{__file__}.{GAME}.solution.txt")
+    # solver.save_solutions(f"{__file__}.{GAME}.solution.txt")

@@ -8,8 +8,11 @@ StoneShape = Tuple[tuple[int, int], ...]
 StoneColor = Literal[
     "green", "pink", "yellow", "violet", "lightred",
     "red", "orange", "blue", "lightblue",
-    "cyan", "lightgreen", "lime",
+    "cyan", "lightgreen", "lime", "empty"
 ]
+
+EMPTY:StoneColor = "empty"
+
 
 # Default orientation:
 #
@@ -69,23 +72,32 @@ STONES: dict[StoneColor, StoneShape] = {
     "lime": ((0, 0), (0, 1), (1, -1), (1, 0), (1, 1)),
 }
 
+STONE_SIZES: dict[StoneColor, int] = {
+    color: len(STONES[color]) for color in STONES
+}
+
 _LIGHT = "🟓"
 _DARK = "🟔"
 
-STONE_MARKER: dict[StoneColor, str] = {
-    "green": colored(_DARK, 'green', force_color=True),
-    "pink": colored(_LIGHT, "light_magenta", force_color=True),
-    "yellow": colored(_DARK, "yellow", force_color=True),
-    "violet": colored(_DARK, "magenta", force_color=True),
-    "lightred": colored(_LIGHT, "light_red", force_color=True),
-    "red": colored(_DARK, "red", force_color=True),
-    "orange": colored(_LIGHT, "light_yellow", force_color=True),
-    "blue": colored(_DARK, "blue", force_color=True),
-    "lightblue": colored(_LIGHT, "light_blue", force_color=True),
-    "cyan": colored(_DARK, "cyan", force_color=True),
-    "lightgreen": colored(_LIGHT, "light_green", force_color=True),
-    "lime": colored(_LIGHT, "light_cyan", force_color=True),
+def _light(color: str, marker: str):
+    return (colored(text=_LIGHT, color=color, force_color=True), marker)
+
+def _dark(color: str, marker: str):
+    return (colored(text=_DARK, color=color, force_color=True), marker)
+
+STONE_MARKER: dict[StoneColor, tuple[str, str]] = {
+    "green": _dark(color='green', marker='G'),
+    "pink": _light(color="light_magenta", marker='p'),
+    "yellow": _dark(color="yellow", marker='y'),
+    "violet": _dark(color="magenta", marker='v'),
+    "lightred": _light(color="light_red", marker='r'),
+    "red": _dark(color="red", marker='R'),
+    "orange": _light(color="light_yellow", marker='o'),
+    "blue": _dark(color="blue", marker='B'),
+    "lightblue": _light(color="light_blue", marker='b'),
+    "cyan": _dark(color="cyan", marker='c'),
+    "lightgreen": _light(color="light_green", marker='g'),
+    "lime": _light(color="light_cyan", marker='l'),
+    EMPTY: ('·', '·'),
 }
 
-
-EMPTY = '·'

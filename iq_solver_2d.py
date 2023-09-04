@@ -24,15 +24,16 @@ class IqSolver2d(IqSolverBase):
         )
 
 
-solver = IqSolver2d()
+GAME: int = 0
+TEST = False
+
+solver = IqSolver2d(file_name_color=f"{__file__}.{GAME}.solution-color.txt",
+                    file_name_text=f"{__file__}.{GAME}.solution.txt")
 
 
 def place_stone(color: StoneColor, direction: tuple[DirectionOrientation, DirectionRotation], start: tuple[int, int]):
     solver.place_stone(color, (0, *direction), start=(*start, 0))
 
-
-GAME: int = 32
-TEST = False
 
 if GAME == 1:  # pyright: ignore[reportUnnecessaryComparison]
     place_stone("pink", (1, 1), (0, 0))
@@ -52,8 +53,9 @@ elif GAME == 32:  # pyright: ignore[reportUnnecessaryComparison]
 
 
 if TEST:
-    solver.print_board(False)
+    solver.print_board(no_dups=False)
 else:
+    solver.load_board()
     solver.solve()
     solver.print_solutions()
-    solver.save_solutions(f"{__file__}.{GAME}.solution.txt")
+    # solver.save_solutions(f"{__file__}.{GAME}.solution.txt")
